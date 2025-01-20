@@ -1,0 +1,164 @@
+@use 'base' as v;
+
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: v.$color-main;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: v.$color-toolbar;
+  > div {
+    font-family: v.$font-poppins;
+  }
+  ~ .page-title {
+    font-family: v.$font-poppins;
+    color: v.$color-font;
+    font-size: 18px;
+    padding: 10px;
+    background-color: v.$color-header;
+  }
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 50px;
+  grid-template-areas: 'menu content' 'footer footer';
+  height: 100%;
+}
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+  width: 170px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-self: flex-start;
+  grid-area: menu;
+  background-color: v.$color-navbar;
+
+  > .menu-title {
+    font-family: v.$font-roboto;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: v.$color-font;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  > ul li {
+    display: flex;
+    flex-direction: column;
+    background-color: v.$color-menuItems;
+    list-style: none;
+    font-family: v.$font-roboto;
+    border: 1px solid v.$color-border;
+    padding: 10px;
+    margin-left: -40px;
+  }
+}
+
+.list {
+  grid-area: content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 25px;
+  row-gap: 25px;
+  > .card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: v.$color-card;
+    border: 1px solid v.$color-border-card;
+    border-radius: 5px;
+    width: 350px;
+    height: 220px;
+    > img {
+      border-radius: 50%;
+      width: 100px;
+    }
+
+    > .member-name {
+      font-family: v.$font-poppins;
+      font-size: 14px;
+    }
+  }
+}
+
+footer {
+  grid-area: footer;
+  background-color: v.$color-footer;
+  padding: 10px;
+  font-family: v.$font-poppins;
+}
+@media screen and (max-width: 768px) {
+  .page-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr 50px;
+    grid-template-areas:
+      'menu'
+      'content'
+      'footer';
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .menu-container {
+    grid-area: menu;
+    height: 80px;
+  }
+  .menu-container ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    > li {
+      width: 4em;
+      text-align: center;
+    }
+  }
+
+  .menu-title {
+    display: none;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > .card-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      column-gap: 10px;
+      width: 95%;
+      border: none;
+      background-color: v.$color-card;
+
+      > img {
+        margin-left: 10px;
+      }
+    }
+  }
+}
