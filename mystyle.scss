@@ -1,5 +1,9 @@
 @use 'base' as v;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   width: 100%;
   padding: 0;
@@ -32,18 +36,19 @@ body {
   grid-template-areas: 'menu content' 'footer footer';
   height: 100%;
 }
+
+nav {
+  background-color: v.$color-navbar;
+}
 .menu-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100vh;
-  width: 170px;
+  width: auto;
   position: sticky;
   top: 0;
   left: 0;
   align-self: flex-start;
-  grid-area: menu;
-  background-color: v.$color-navbar;
 
   > .menu-title {
     font-family: v.$font-roboto;
@@ -51,9 +56,13 @@ body {
     font-size: 20px;
     color: v.$color-font;
     text-align: center;
-    margin-top: 10px;
+    padding: 10px 40px;
   }
-
+  > ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
   > ul li {
     display: flex;
     flex-direction: column;
@@ -62,7 +71,10 @@ body {
     font-family: v.$font-roboto;
     border: 1px solid v.$color-border;
     padding: 10px;
-    margin-left: -40px;
+  }
+  > ul li:hover {
+    background-color: v.$color-navbarhover;
+    cursor: pointer;
   }
 }
 
@@ -106,7 +118,7 @@ footer {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr 50px;
+    grid-template-rows: 80px 1fr 50px;
     grid-template-areas:
       'menu'
       'content'
@@ -127,7 +139,7 @@ footer {
   }
 
   .menu-container {
-    grid-area: menu;
+    justify-content: center;
     height: 80px;
   }
   .menu-container ul {
@@ -135,8 +147,9 @@ footer {
     flex-direction: row;
     justify-content: space-around;
     > li {
-      width: 4em;
+      flex-grow: 1;
       text-align: center;
+      margin: 10px;
     }
   }
 
